@@ -9,11 +9,12 @@ describe "Manages tasks" do
     db.create_table! :tasks do
       primary_key :id
       String :task
+      BOOLEAN :completed, :default => false
     end
 
     tasks.add_task({:id => 1, :task => 'do_stuff'})
     tasks.add_task({:id => 2, :task => 'do_more_stuff'})
-    actual = [{:id => 1, :task => 'do_stuff'}, {:id => 2, :task => 'do_more_stuff'}]
+    actual = [{:id => 1, :task => 'do_stuff', :completed => false}, {:id => 2, :task => 'do_more_stuff', :completed => false}]
     expect(tasks.show_all).to eq(actual)
   end
 end
